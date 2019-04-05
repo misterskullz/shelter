@@ -1,12 +1,29 @@
 local mod = shelter_mapgen
 
-minetest.register_node('default:stone', {
-	description = 'Stone',
-	tiles ={'default_stone.png'},
+minetest.register_node('shelter:air_toxic', {
+	description = 'Toxic air',
+	drawtype = 'airlike',
 	groups = {cracky=3},
 	drop = 'default:cobble',
-	legacy_mineral = true,
 	sounds = default.node_sound_stone_defaults(),
+})
+
+
+minetest.register_node("shelter:air_toxic", {
+	description = "Toxic air",
+	drawtype = "airlike",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	floodable = true,
+	air_equivalent = true,
+	drop = "",
+	drowning = 1,
+	post_effect_color = {a = 64, r = 200, g = 180, b = 80},
+	groups = {not_in_creative_inventory = 1, toxic = 1},
 })
 
 minetest.register_node('default:stone_with_coal', {
@@ -201,6 +218,7 @@ minetest.register_node('default:water_source', {
 	liquid_alternative_flowing = 'default:water_flowing',
 	liquid_alternative_source = 'default:water_source',
 	liquid_viscosity = WATER_VISC,
+	drowning = 1,
 	post_effect_color = {a = 64, r = 100, g = 100, b = 200},
 	groups = {water = 3, liquid = 3},
 })

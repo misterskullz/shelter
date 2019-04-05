@@ -16,6 +16,8 @@ minetest.register_alias("mapgen_cobble", "default:cobble")
 minetest.register_alias("mapgen_stair_cobble", "stairs:stair_cobble")
 minetest.register_alias("mapgen_mossycobble", "default:mossycobble")
 
+minetest.register_alias('air', 'shelter:air_toxic')
+
 minetest.clear_registered_biomes()
 minetest.clear_registered_decorations()
 
