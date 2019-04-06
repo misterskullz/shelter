@@ -1,6 +1,6 @@
 local mod = shelter_mapgen
 
-minetest.register_node('shelter_mapgen:air_toxic', {
+minetest.register_node(mod.mod_str .. 'air_toxic', {
 	description = 'Toxic air',
 	drawtype = 'airlike',
 	paramtype = 'light',
@@ -17,7 +17,7 @@ minetest.register_node('shelter_mapgen:air_toxic', {
 	groups = {not_in_creative_inventory = 1, toxic = 1},
 })
 
-minetest.register_node('shelter_mapgen:air', {
+minetest.register_node(mod.mod_str .. 'air', {
 	description = 'Air',
 	drawtype = 'airlike',
 	paramtype = 'light',
@@ -32,25 +32,25 @@ minetest.register_node('shelter_mapgen:air', {
 	groups = {not_in_creative_inventory = 1},
 })
 
-minetest.register_node("shelter_mapgen:water_source_toxic", {
-	description = "Toxic water source",
-	drawtype = "liquid",
+minetest.register_node(mod.mod_str .. 'water_source_toxic', {
+	description = 'Toxic water source',
+	drawtype = 'liquid',
 	tiles = {
 		{
-			name = "default_water_source_animated.png",
+			name = 'default_water_source_animated.png',
 			backface_culling = false,
 			animation = {
-				type = "vertical_frames",
+				type = 'vertical_frames',
 				aspect_w = 16,
 				aspect_h = 16,
 				length = 2.0,
 			},
 		},
 		{
-			name = "default_water_source_animated.png",
+			name = 'default_water_source_animated.png',
 			backface_culling = true,
 			animation = {
-				type = "vertical_frames",
+				type = 'vertical_frames',
 				aspect_w = 16,
 				aspect_h = 16,
 				length = 2.0,
@@ -58,17 +58,17 @@ minetest.register_node("shelter_mapgen:water_source_toxic", {
 		},
 	},
 	alpha = 160,
-	paramtype = "light",
+	paramtype = 'light',
 	walkable = false,
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
 	is_ground_content = false,
-	drop = "",
+	drop = '',
 	drowning = 1,
-	liquidtype = "source",
-	liquid_alternative_flowing = "shelter_mapgen:water_flowing_toxic",
-	liquid_alternative_source = "shelter_mapgen:water_source_toxic",
+	liquidtype = 'source',
+	liquid_alternative_flowing = mod.mod_str .. 'water_flowing_toxic',
+	liquid_alternative_source = mod.mod_str .. 'water_source_toxic',
 	liquid_viscosity = 3,
 	liquid_range = 3,
 	light_source = 4,
@@ -78,26 +78,26 @@ minetest.register_node("shelter_mapgen:water_source_toxic", {
 	--sounds = default.node_sound_water_defaults(),
 })
 
-minetest.register_node("shelter_mapgen:water_flowing_toxic", {
-	description = "Toxic flowing Water",
-	drawtype = "flowingliquid",
-	tiles = {"default_water.png"},
+minetest.register_node(mod.mod_str .. 'water_flowing_toxic', {
+	description = 'Toxic flowing Water',
+	drawtype = 'flowingliquid',
+	tiles = {'default_water.png'},
 	special_tiles = {
 		{
-			name = "default_water_flowing_animated.png",
+			name = 'default_water_flowing_animated.png',
 			backface_culling = false,
 			animation = {
-				type = "vertical_frames",
+				type = 'vertical_frames',
 				aspect_w = 16,
 				aspect_h = 16,
 				length = 0.8,
 			},
 		},
 		{
-			name = "default_water_flowing_animated.png",
+			name = 'default_water_flowing_animated.png',
 			backface_culling = true,
 			animation = {
-				type = "vertical_frames",
+				type = 'vertical_frames',
 				aspect_w = 16,
 				aspect_h = 16,
 				length = 0.8,
@@ -105,18 +105,18 @@ minetest.register_node("shelter_mapgen:water_flowing_toxic", {
 		},
 	},
 	alpha = 160,
-	paramtype = "light",
-	paramtype2 = "flowingliquid",
+	paramtype = 'light',
+	paramtype2 = 'flowingliquid',
 	walkable = false,
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
 	is_ground_content = false,
-	drop = "",
+	drop = '',
 	drowning = 1,
-	liquidtype = "flowing",
-	liquid_alternative_flowing = "shelter_mapgen:water_flowing_toxic",
-	liquid_alternative_source = "shelter_mapgen:water_source_toxic",
+	liquidtype = 'flowing',
+	liquid_alternative_flowing = mod.mod_str .. 'water_flowing_toxic',
+	liquid_alternative_source = mod.mod_str .. 'water_source_toxic',
 	liquid_viscosity = 3,
 	liquid_range = 3,
 	light_source = 3,
@@ -139,7 +139,6 @@ mod.color_strings = {
 	'#5d2927', -- darker red
 	'#91403d', -- lighter red
 }
--- [colorize:color:ratio
 
 function mod.colorize_tile(tile, color)
 	return tile .. '^[multiply:' .. color
@@ -155,38 +154,54 @@ function mod.make_ground_nodes(name, tile)
 	return nodes
 end
 
-minetest.register_node('shelter_mapgen:stone', {
-	description = 'Stone',
-	tiles ={mod.colorize_tile('shelter_stone.png', mod.color_strings[1])},
-	groups = {cracky = 3, oddly_breakable_by_hand=1},
-	drop = 'shelter_mapgen:stone',
+minetest.register_node(mod.mod_str .. 'dirt', {
+	description = 'Dirt',
+	tiles ={'shelter_dirt.png'},
+	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
+	drop = mod.mod_str .. 'dirt',
 	--sounds = default.node_sound_stone_defaults(),
 })
 
-for _,node in pairs(mod.make_ground_nodes('shelter_mapgen:stone', 'shelter_stone.png')) do
+minetest.register_node(mod.mod_str .. 'grass', {
+	description = 'Grass',
+	tiles ={'shelter_grass.png'},
+	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
+	drop = mod.mod_str .. 'grass',
+	--sounds = default.node_sound_stone_defaults(),
+})
+
+minetest.register_node(mod.mod_str .. 'stone', {
+	description = 'Stone',
+	tiles ={mod.colorize_tile('shelter_stone.png', mod.color_strings[1])},
+	groups = {cracky = 3, oddly_breakable_by_hand=1},
+	drop = mod.mod_str .. 'stone',
+	--sounds = default.node_sound_stone_defaults(),
+})
+
+for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone', 'shelter_stone.png')) do
 	minetest.register_node(node[1], {
 		description = 'Stone',
 		tiles ={node[2]},
 		groups = {cracky = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1},
-		drop = 'shelter_mapgen:stone',
+		drop = mod.mod_str .. 'stone',
 		--sounds = default.node_sound_stone_defaults(),
 	})
 end
 
-minetest.register_node('shelter_mapgen:sand', {
+minetest.register_node(mod.mod_str .. 'sand', {
 	description = 'Sand',
 	tiles ={mod.colorize_tile('shelter_sand.png', mod.color_strings[5])},
-	groups = {crumbly = 3, oddly_breakable_by_hand=1},
-	drop = 'shelter_mapgen:sand',
+	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
+	drop = mod.mod_str .. 'sand',
 	--sounds = default.node_sound_stone_defaults(),
 })
 
-for _,node in pairs(mod.make_ground_nodes('shelter_mapgen:sand', 'shelter_sand.png')) do
+for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand', 'shelter_sand.png')) do
 	minetest.register_node(node[1], {
 		description = 'Sand',
 		tiles ={node[2]},
-		groups = {crumbly = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1},
-		drop = 'shelter_mapgen:sand',
+		groups = {crumbly = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1, falling_node = 1},
+		drop = mod.mod_str .. 'sand',
 		--sounds = default.node_sound_stone_defaults(),
 	})
 end

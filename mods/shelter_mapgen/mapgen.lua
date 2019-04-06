@@ -1,28 +1,28 @@
 local mod = shelter_mapgen
-
+local mod.mod_str = 'xshelter_mapgen:'
 --[[
 
 Notes:
 - It looks like the biome node top doesn't work unless there is a water node registered
 
 ]]--
-minetest.register_alias('mapgen_stone', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_dirt', 'shelter_mapgen:sand')
-minetest.register_alias('mapgen_dirt_with_grass', 'shelter_mapgen:sand')
-minetest.register_alias('mapgen_sand', 'shelter_mapgen:sand')
-minetest.register_alias('mapgen_water_source', 'shelter_mapgen:water_source_toxic')
-minetest.register_alias('mapgen_river_water_source', 'shelter_mapgen:water_source_toxic')
-minetest.register_alias('mapgen_lava_source', 'shelter_mapgen:water_source_toxic')
-minetest.register_alias('mapgen_gravel', 'shelter_mapgen:stone')
+minetest.register_alias('mapgen_stone', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_dirt', mod.mod_str .. 'sand')
+minetest.register_alias('mapgen_dirt_with_grass', mod.mod_str .. 'sand')
+minetest.register_alias('mapgen_sand', mod.mod_str .. 'sand')
+minetest.register_alias('mapgen_water_source', mod.mod_str .. 'water_source_toxic')
+minetest.register_alias('mapgen_river_water_source', mod.mod_str .. 'water_source_toxic')
+minetest.register_alias('mapgen_lava_source', mod.mod_str .. 'water_source_toxic')
+minetest.register_alias('mapgen_gravel', mod.mod_str .. 'stone')
 
-minetest.register_alias('mapgen_tree', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_leaves', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_apple', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_junglegrass', 'shelter_mapgen:stone')
+minetest.register_alias('mapgen_tree', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_leaves', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_apple', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_junglegrass', mod.mod_str .. 'stone')
 
-minetest.register_alias('mapgen_cobble', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_stair_cobble', 'shelter_mapgen:stone')
-minetest.register_alias('mapgen_mossycobble', 'shelter_mapgen:stone')
+minetest.register_alias('mapgen_cobble', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_stair_cobble', mod.mod_str .. 'stone')
+minetest.register_alias('mapgen_mossycobble', mod.mod_str .. 'stone')
 
 minetest.clear_registered_biomes()
 minetest.clear_registered_ores()
@@ -34,8 +34,8 @@ local clust_size = n * n * n
 for i,_ in ipairs(color_strings) do
 	minetest.register_ore({
 		ore_type       = 'scatter',
-		ore            = 'shelter_mapgen:sand' .. tostring(i),
-		wherein        = 'shelter_mapgen:sand',
+		ore            = mod.mod_str .. 'sand' .. tostring(i),
+		wherein        = mod.mod_str .. 'sand',
 		clust_scarcity = clust_size,
 		clust_num_ores = 16,
 		clust_size     = n,
@@ -43,8 +43,8 @@ for i,_ in ipairs(color_strings) do
 
 	minetest.register_ore({
 		ore_type       = 'scatter',
-		ore            = 'shelter_mapgen:stone' .. tostring(i),
-		wherein        = 'shelter_mapgen:stone',
+		ore            = mod.mod_str .. 'stone' .. tostring(i),
+		wherein        = mod.mod_str .. 'stone',
 		clust_scarcity = clust_size,
 		clust_num_ores = 16,
 		clust_size     = n,
@@ -54,11 +54,11 @@ end
 minetest.register_biome({
 	name = 'desert',
 	--node_dust = '',
-	node_top = 'shelter_mapgen:sand',
+	node_top = mod.mod_str .. 'sand',
 	depth_top = 8,
-	node_filler = 'shelter_mapgen:stone',
+	node_filler = mod.mod_str .. 'stone',
 	depth_filler = 1,
-	node_stone = 'shelter_mapgen:stone',
+	node_stone = mod.mod_str .. 'stone',
 })
 
 
