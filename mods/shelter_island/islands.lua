@@ -5,7 +5,7 @@ local _ = { name = 'shelter_mapgen:air_toxic', prob = 0, force_place = false }
 local s = { name = 'shelter_mapgen:stone', prob = 255, force_place = true }
 local d = { name = 'shelter_mapgen:dirt', prob = 255, force_place = true }
 local g = { name = 'shelter_mapgen:grass', prob = 255, force_place = true }
-local r = { name = 'shelter_mapgen:sand', prob = 255, force_place = true }
+local r = { name = 'shelter_machines:computer_relay', prob = 255, force_place = true }
 local f = { name = 'shelter_mapgen:sand', prob = 255, force_place = true }
 local c = { name = 'shelter_mapgen:sand', prob = 255, force_place = true }
 local x = { name = 'shelter_mapgen:air', prob = 255, force_place = true }

@@ -52,6 +52,8 @@ function mod.find_spawn_position()
 		if y then
 			local pos = {x = x, y = y, z = z}
 			
+			minetest.debug('find_spawn_position checking ' .. minetest.pos_to_string(pos))
+
 			if mod.spawn_away_from_players(pos, spawns) then
 				return pos
 			end

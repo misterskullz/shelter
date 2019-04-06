@@ -1,5 +1,5 @@
 local mod = shelter_mapgen
-local mod.mod_str = 'xshelter_mapgen:'
+
 --[[
 
 Notes:

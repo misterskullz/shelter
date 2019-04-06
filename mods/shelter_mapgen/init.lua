@@ -1,5 +1,6 @@
 shelter_mapgen = {}
 local mod = shelter_mapgen
+mod.mod_str = 'shelter_mapgen:'
 
 local path = minetest.get_modpath("shelter_mapgen") .. '/'
 local player_head_offset = 1
