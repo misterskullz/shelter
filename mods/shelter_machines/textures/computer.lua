@@ -4,23 +4,25 @@
 
 minetest.register_node("test:node_1", {
 	tiles = {
-		"shelter_computer_relay_top.png",
-		"shelter_computer_relay_top.png",
-		"shelter_computer_relay_side.png",
-		"shelter_computer_relay_side.png",
-		"shelter_computer_relay_side.png",
-		"shelter_computer_relay_side.png"
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png",
+		"default_wood.png"
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.4375, -0.5, -0.4375, 0.4375, -0.3125, 0.4375}, -- NodeBox1
-			{-0.4375, 0.3125, -0.4375, 0.4375, 0.5, 0.4375}, -- NodeBox2
-			{-0.3125, -0.375, -0.3125, 0.3125, 0.375, 0.3125}, -- NodeBox3
-			{-0.25, -0.1875, -0.5, 0.25, 0.1875, 0.5}, -- NodeBox4
-			{-0.5, -0.1875, -0.25, 0.5, 0.1875, 0.25}, -- NodeBox5
+			{-0.5, -0.5, -0.5, 0.5, -0.25, 0.5}, -- NodeBox1
+			{-0.5, 0.25, -0.5, 0.5, 0.5, 0.5}, -- NodeBox2
+			{-0.5, -0.25, -0.5, -0.25, 0.25, -0.25}, -- NodeBox3
+			{0.25, -0.25, -0.5, 0.5, 0.25, -0.25}, -- NodeBox4
+			{0.25, -0.25, 0.25, 0.5, 0.25, 0.5}, -- NodeBox5
+			{-0.5, -0.25, 0.25, -0.25, 0.25, 0.5}, -- NodeBox6
+			{-0.25, -0.25, -0.25, 0.25, 0.25, 0.25}, -- NodeBox7
 		}
 	}
 })

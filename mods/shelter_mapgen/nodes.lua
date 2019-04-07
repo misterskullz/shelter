@@ -1,4 +1,21 @@
 local mod = shelter_mapgen
+local helper = shelter_helpers
+
+minetest.register_node(mod.mod_str .. 'air', {
+	description = 'Air',
+	drawtype = 'airlike',
+	paramtype = 'light',
+	sunlight_propagates = true,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	floodable = true,
+	air_equivalent = true,
+	drop = '',
+	groups = {not_in_creative_inventory = 1},
+})
+
 
 minetest.register_node(mod.mod_str .. 'air_toxic', {
 	description = 'Toxic air',
@@ -17,20 +34,35 @@ minetest.register_node(mod.mod_str .. 'air_toxic', {
 	groups = {not_in_creative_inventory = 1, toxic = 1},
 })
 
-minetest.register_node(mod.mod_str .. 'air', {
-	description = 'Air',
-	drawtype = 'airlike',
-	paramtype = 'light',
-	sunlight_propagates = true,
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	floodable = true,
-	air_equivalent = true,
-	drop = '',
-	groups = {not_in_creative_inventory = 1},
+minetest.register_abm({
+    label = mod.mod_str .. 'air_toxic_replace_air',
+	nodenames = {mod.mod_str .. 'air_toxic'},
+	neighbors = {mod.mod_str .. 'air'},
+    interval = 0.5,
+    chance = 500,
+	action = function(pos)
+		local air_nodes = helper.get_nodes_around_position(pos, 1, mod.mod_str .. 'air')
+		if air_nodes[1] then
+			local p = air_nodes[1]
+			minetest.swap_node(p, {name = mod.mod_str .. 'air_toxic'})
+			
+			minetest.add_particlespawner({
+				amount = math.random(1, 4),
+				time = 0.5,
+				minpos = {x = p.x - 1, y = p.y - 1, z = p.z - 1},
+				maxpos = {x = p.x + 1, y = p.y + 1, z = p.z + 1},
+				minexptime = 0.5,
+				maxexptime = 1,
+				minsize = 3,
+				maxsize = 6,
+				minacc = {x = 0, y = 0.5, z = 0},
+            	maxacc = {x = 0, y = 1, z = 0},
+				texture = 'shelter_air_toxic_particle.png'
+			})
+		end
+    end,
 })
+
 
 minetest.register_node(mod.mod_str .. 'water_source_toxic', {
 	description = 'Toxic water source',

@@ -48,7 +48,9 @@ function mod.find_spawn_position()
 		local x = math.random(world_spawn.x - max_distance, world_spawn.x + max_distance)
 		local z = math.random(world_spawn.z - max_distance, world_spawn.z + max_distance)
 
+		minetest.emerge_area({x = x - 1, y = 0, z = z - 1}, {x = x + 1, y = 0, z = z + 1})
 		local y = minetest.get_spawn_level(x, z)
+		
 		if y then
 			local pos = {x = x, y = y, z = z}
 			

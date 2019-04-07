@@ -6,8 +6,9 @@ local s = { name = 'shelter_mapgen:stone', prob = 255, force_place = true }
 local d = { name = 'shelter_mapgen:dirt', prob = 255, force_place = true }
 local g = { name = 'shelter_mapgen:grass', prob = 255, force_place = true }
 local r = { name = 'shelter_machines:computer_relay', prob = 255, force_place = true }
-local f = { name = 'shelter_mapgen:sand', prob = 255, force_place = true }
-local c = { name = 'shelter_mapgen:sand', prob = 255, force_place = true }
+local f = { name = 'shelter_machines:rose', prob = 255, force_place = true }
+local c = { name = 'shelter_machines:computer', prob = 255, force_place = true }
+local a = { name = 'shelter_machines:purifier_air_basic', prob = 255, force_place = true }
 local x = { name = 'shelter_mapgen:air', prob = 255, force_place = true }
 
 mod.schematic_island_00 = {}
@@ -113,7 +114,7 @@ _, d, d, d, d, d, d, d, d, d, d, d, d, d, _, _,
 d, d, d, d, d, d, d, d, d, d, g, d, d, d, d, _, 
 x, x, x, x, x, x, x, x, r, x, x, x, x, x, x, _, 
 x, x, x, x, x, x, x, x, c, x, x, x, x, x, x, _, 
-x, x, x, x, x, x, x, x, r, x, x, x, x, x, x, _, 
+x, x, x, x, x, x, x, x, a, x, x, x, x, x, x, _, 
 _, x, x, x, x, x, x, x, x, x, x, x, x, x, _, _, 
 _, _, x, x, x, x, x, x, x, x, _, _, _, _, _, _, 
 _, _, _, _, x, x, _, x, _, _, _, _, _, _, _, _, 

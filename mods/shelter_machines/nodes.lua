@@ -27,10 +27,11 @@ minetest.register_node(mod.mod_str .. 'computer_relay', {
 			{-0.5, -0.1875, -0.25, 0.5, 0.1875, 0.25},
 		}
     },
-    is_ground_content = true,
+    is_ground_content = false,
     sunlight_propagates = true,
-    light_source = 6,
+    light_source = 2,
     collision_box = full_node_box,
+    selection_box = full_node_box,
 })
 
 minetest.register_abm({
@@ -77,16 +78,141 @@ minetest.register_abm({
                     texture = 'shelter_computer_relay_particle.png'
                 })
 
-                minetest.sound_play({name = 'shelter_computer_relay_beep'}, {pos = neighbor.spawn, gain = 0.5})
+                minetest.sound_play({name = 'shelter_computer_relay_beep'}, {pos = neighbor.spawn, gain = 0.4})
             end
         end
     end,
 })
 
-minetest.register_node(mod.mod_str .. 'dirt', {
-	description = 'Dirt',
-	tiles ={'shelter_dirt.png'},
-	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
-	drop = mod.mod_str .. 'dirt',
-	--sounds = default.node_sound_stone_defaults(),
+minetest.register_node(mod.mod_str .. 'computer', {
+    description = 'Computer',
+	tiles = {
+		'shelter_computer_relay_top.png',
+		'shelter_computer_relay_top.png',
+		'shelter_computer_side.png',
+		'shelter_computer_side.png',
+		'shelter_computer_side.png',
+		'shelter_computer_side.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.5, 0.375, -0.5, 0.5, 0.5, 0.5},
+			{-0.5, -0.5, -0.5, 0.5, -0.375, 0.5},
+			{-0.4375, -0.4375, -0.375, -0.3125, 0.4375, 0.375},
+			{0.3125, -0.4375, -0.375, 0.4375, 0.4375, 0.375},
+			{-0.25, -0.4375, -0.4375, 0.25, 0.4375, 0.4375},
+		}
+    },
+    is_ground_content = false,
+    sunlight_propagates = true,
+    light_source = 8,
+    collision_box = full_node_box,
+    selection_box = full_node_box,
+})
+
+minetest.register_abm({
+    label = mod.mod_str .. 'computer_processing',
+    nodenames = {mod.mod_str .. 'computer'},
+    interval = 3 * 60 + 10,
+    chance = 3,
+    action = function(pos)
+        minetest.add_particlespawner({
+            amount = 120,
+            time = 30,
+            glow = 10,
+            minpos = {x = pos.x, y = pos.y + 20, z = pos.z},
+            maxpos = {x = pos.x, y = pos.y + 60, z = pos.z},
+            minexptime = 1,
+            maxexptime = 3,
+            minsize = 1,
+            maxsize = 6,
+            minacc = {x = 0, y = -10, z = 0},
+            maxacc = {x = 0, y = -30, z = 0},
+            texture = 'shelter_computer_processing_particle.png'
+        })
+
+        minetest.sound_play({name = 'shelter_computer_processing'}, {pos = pos, gain = 0.2})
+    end,
+})
+
+minetest.register_node(mod.mod_str .. 'rose', {
+    description = 'Rose',
+	tiles = {
+		'shelter_rose_top.png',
+		'shelter_rose_top.png',
+		'shelter_rose_side.png',
+		'shelter_rose_side.png',
+		'shelter_rose_side.png',
+		'shelter_rose_side.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.0625, -0.5, 0, 0, 0.1875, 0.0625},
+			{-0.125, 0.1875, -0.0625, 0.0625, 0.4375, 0.125},
+			{-0.0625, -0.0625, -0.1875, 0.0625, 0, 0},
+			{-0.125, 0, 0.0625, 0, 0.0625, 0.25},
+		}
+    },
+    is_ground_content = false,
+    sunlight_propagates = true,
+    walkable = false,
+    buildable_to = true,
+})
+
+minetest.register_node(mod.mod_str .. 'purifier_air_basic', {
+    description = 'Basic air purifier',
+	tiles = {
+		'shelter_purifier_air_basic.png'
+	},
+	drawtype = 'nodebox',
+	paramtype = 'light',
+	node_box = {
+		type = 'fixed',
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.25, 0.5},
+			{-0.5, 0.25, -0.5, 0.5, 0.5, 0.5},
+			{-0.5, -0.25, -0.5, -0.25, 0.25, -0.25},
+			{0.25, -0.25, -0.5, 0.5, 0.25, -0.25},
+			{0.25, -0.25, 0.25, 0.5, 0.25, 0.5},
+			{-0.5, -0.25, 0.25, -0.25, 0.25, 0.5},
+			{-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
+		}
+    },
+    is_ground_content = false,
+    sunlight_propagates = true,
+    walkable = true,
+    collision_box = full_node_box,
+    selection_box = full_node_box,
+})
+
+minetest.register_abm({
+    label = mod.mod_str .. 'purifier_air_basic',
+    nodenames = {mod.mod_str .. 'purifier_air_basic'},
+    interval = 10.1,
+    chance = 1,
+    action = function(pos)
+        mod.purify_air(pos, 8)
+
+        minetest.add_particlespawner({
+            amount = 15,
+            time = 2,
+            minpos = {x = pos.x + 1, y = pos.y - 0.3, z = pos.z - 0.3},
+            maxpos = {x = pos.x + 3, y = pos.y + 0.3, z = pos.z + 0.3},
+            minexptime = 0.1,
+            maxexptime = 0.8,
+            minsize = 2,
+            maxsize = 6,
+            minacc = {x = -10, y = 0, z = 0},
+            maxacc = {x = -20, y = 0, z = 0},
+            texture = 'shelter_purifier_air_particle.png'
+        })
+
+        minetest.sound_play({name = 'shelter_purifier_air_basic'}, {pos = pos, gain = 0.4})
+    end,
 })
