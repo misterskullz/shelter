@@ -229,3 +229,37 @@ minetest.register_abm({
         minetest.sound_play({name = 'shelter_purifier_air_basic'}, {pos = pos, gain = 0.4})
     end,
 })
+
+-- todo: basic processor
+
+-- todo: basic processor
+
+-- todo: basic unstable processor
+
+-- todo: basic recycler
+
+-- todo: basic solar energy producer
+
+-- todo: basic solar energy extender
+
+-- todo: basic steam turbine
+
+-- todo: basic water extractor
+
+-- todo: basic distiller
+
+-- todo basic air purifier
+
+-- todo: basic tank
+
+-- todo basic item hopper
+
+-- todo basic tube
+
+-- todo basic colored tube
+
+-- todo basic input valve
+
+-- todo basic output valve
+
+-- todo basic force field

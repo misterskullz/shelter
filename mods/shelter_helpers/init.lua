@@ -15,3 +15,4 @@ function mod.replace_nodes_around_position(pos, distance, search_node_name, repl
 	local nodes = mod.get_nodes_around_position(pos, distance, search_node_name)
 	minetest.bulk_set_node(nodes, { name = replacer_node_name })
 end
+
