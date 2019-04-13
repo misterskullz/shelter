@@ -1,5 +1,6 @@
 local mod = shelter_mapgen
 
+-- todo: add all sounds
 
 function mod.defs(table, dig, dug, foot, place, fail)
 	table = table or {}

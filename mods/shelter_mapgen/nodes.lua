@@ -1,5 +1,6 @@
 local mod = shelter_mapgen
 local helper = shelter_helpers
+local items_str = 'shelter_items:'
 
 minetest.register_node(mod.mod_str .. 'air', {
 	description = 'Air',
@@ -17,51 +18,50 @@ minetest.register_node(mod.mod_str .. 'air', {
 })
 
 
-minetest.register_node(mod.mod_str .. 'air_toxic', {
-	description = 'Toxic air',
-	drawtype = 'airlike',
-	paramtype = 'light',
-	sunlight_propagates = true,
-	walkable = false,
-	pointable = false,
-	diggable = false,
-	buildable_to = true,
-	floodable = true,
-	air_equivalent = true,
-	drop = '',
-	drowning = 1,
-	post_effect_color = {a = 48, r = 200, g = 180, b = 80},
-	groups = {not_in_creative_inventory = 1, toxic = 1},
-})
-
 minetest.register_abm({
     label = mod.mod_str .. 'air_toxic_replace_air',
-	nodenames = {mod.mod_str .. 'air_toxic'},
+	nodenames = {'air'},
 	neighbors = {mod.mod_str .. 'air'},
     interval = 0.5,
-    chance = 500,
+    chance = 100,
 	action = function(pos)
 		local air_nodes = helper.get_nodes_around_position(pos, 1, mod.mod_str .. 'air')
 		if air_nodes[1] then
-			local p = air_nodes[1]
-			minetest.swap_node(p, {name = mod.mod_str .. 'air_toxic'})
+			local r = math.random(1, #air_nodes)
+			local p = air_nodes[r]
+			minetest.add_node(p, {name = 'air'})
 			
 			minetest.add_particlespawner({
-				amount = math.random(1, 4),
+				amount = math.random(1, 2),
 				time = 0.5,
 				minpos = {x = p.x - 1, y = p.y - 1, z = p.z - 1},
 				maxpos = {x = p.x + 1, y = p.y + 1, z = p.z + 1},
-				minexptime = 0.5,
+				minexptime = 0.8,
 				maxexptime = 1,
 				minsize = 3,
 				maxsize = 6,
 				minacc = {x = 0, y = 0.5, z = 0},
-            	maxacc = {x = 0, y = 1, z = 0},
-				texture = 'shelter_air_toxic_particle.png'
+            	maxacc = {x = 0.5, y = 1, z = 0.5},
+				texture = 'shelter_air_toxic_particle.png',
+				animation = {
+					type = 'sheet_2d',
+					frames_w = 3,
+					frames_h = 3,
+					frame_length = 0.1,
+				},
 			})
 		end
     end,
 })
+
+
+minetest.override_item('air', {
+	drowning = 1,
+	post_effect_color = {a = 191, r = 255, g = 64, b = 0}, -- bug: post_effect_color on built in air doesn't work
+	groups = {not_in_creative_inventory = 1, toxic = 1},
+})
+
+
 
 
 minetest.register_node(mod.mod_str .. 'water_source_toxic', {
@@ -176,11 +176,11 @@ function mod.colorize_tile(tile, color)
 	return tile .. '^[multiply:' .. color
 end
 
-function mod.make_ground_nodes(name, tile)
+function mod.make_ground_nodes(name)
 	local nodes = {}
 
 	for i,color in ipairs(mod.color_strings) do 
-		nodes[#nodes + 1] = {name .. tostring(i), mod.colorize_tile(tile, color)}
+		nodes[#nodes + 1] = {name .. tostring(i), color}
 	end
 
 	return nodes
@@ -196,7 +196,7 @@ minetest.register_node(mod.mod_str .. 'dirt', {
 
 minetest.register_node(mod.mod_str .. 'grass', {
 	description = 'Grass',
-	tiles ={'shelter_grass.png'},
+	tiles = {'shelter_grass.png'},
 	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
 	drop = mod.mod_str .. 'grass',
 	--sounds = default.node_sound_stone_defaults(),
@@ -204,16 +204,18 @@ minetest.register_node(mod.mod_str .. 'grass', {
 
 minetest.register_node(mod.mod_str .. 'stone', {
 	description = 'Stone',
-	tiles ={mod.colorize_tile('shelter_stone.png', mod.color_strings[1])},
+	tiles = { 'shelter_stone.png' },
+	color =mod.color_strings[1],
 	groups = {cracky = 3, oddly_breakable_by_hand=1},
 	drop = mod.mod_str .. 'stone',
 	--sounds = default.node_sound_stone_defaults(),
 })
 
-for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone', 'shelter_stone.png')) do
+for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone')) do
 	minetest.register_node(node[1], {
 		description = 'Stone',
-		tiles ={node[2]},
+		tiles = { 'sheltershelter_stone_sand.png' },
+		color = node[2],
 		groups = {cracky = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1},
 		drop = mod.mod_str .. 'stone',
 		--sounds = default.node_sound_stone_defaults(),
@@ -222,18 +224,25 @@ end
 
 minetest.register_node(mod.mod_str .. 'sand', {
 	description = 'Sand',
-	tiles ={mod.colorize_tile('shelter_sand.png', mod.color_strings[5])},
+	tiles = { 'shelter_sand.png' },
+	color = mod.color_strings[5],
 	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
 	drop = mod.mod_str .. 'sand',
 	--sounds = default.node_sound_stone_defaults(),
 })
 
-for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand', 'shelter_sand.png')) do
+for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand')) do
 	minetest.register_node(node[1], {
 		description = 'Sand',
-		tiles ={node[2]},
+		tiles = { 'shelter_sand.png' },
+		color = node[2],
 		groups = {crumbly = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1, falling_node = 1},
-		drop = mod.mod_str .. 'sand',
+		drop = {
+			items = {
+				{items = {mod.mod_str .. 'sand'}, rarity = 1, inherit_color = true},
+				{items = {items_str .. 'energy_unit'}, rarity = 10}
+			},
+		},
 		--sounds = default.node_sound_stone_defaults(),
 	})
 end

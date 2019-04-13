@@ -4,7 +4,7 @@ mod.mod_str = 'shelter_machines:'
 local helper = shelter_helpers
 
 local path = minetest.get_modpath('shelter_machines') .. '/'
-local toxic_air = 'shelter_mapgen:air_toxic'
+local toxic_air = 'air'
 local pure_air = 'shelter_mapgen:air'
 
 dofile(path .. 'nodes.lua')

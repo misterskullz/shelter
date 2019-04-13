@@ -1,7 +1,7 @@
 
 local mod = shelter_island
 
-local _ = { name = 'shelter_mapgen:air_toxic', prob = 0, force_place = false }
+local _ = { name = 'air', prob = 0, force_place = false }
 local s = { name = 'shelter_mapgen:stone', prob = 255, force_place = true }
 local d = { name = 'shelter_mapgen:dirt', prob = 255, force_place = true }
 local g = { name = 'shelter_mapgen:grass', prob = 255, force_place = true }

@@ -75,7 +75,13 @@ minetest.register_abm({
                     maxsize = 10,
                     minacc = {x = 0, y = 0.5, z = 0},
                     maxacc = {x = 0, y = 6, z = 0},
-                    texture = 'shelter_computer_relay_particle.png'
+                    texture = 'shelter_computer_relay_particle.png',
+                    animation = {
+                        type = 'vertical_frames',
+                        aspect_w = 16,
+                        aspect_h = 16,
+                        length = 5
+                    }
                 })
 
                 minetest.sound_play({name = 'shelter_computer_relay_beep'}, {pos = neighbor.spawn, gain = 0.4})
@@ -131,7 +137,13 @@ minetest.register_abm({
             maxsize = 6,
             minacc = {x = 0, y = -10, z = 0},
             maxacc = {x = 0, y = -30, z = 0},
-            texture = 'shelter_computer_processing_particle.png'
+            texture = 'shelter_computer_processing_particle.png',
+            animation = {
+                type = 'vertical_frames',
+                aspect_w = 4,
+                aspect_h = 16,
+                length = 5
+            }
         })
 
         minetest.sound_play({name = 'shelter_computer_processing'}, {pos = pos, gain = 0.2})
@@ -189,6 +201,7 @@ minetest.register_node(mod.mod_str .. 'purifier_air_basic', {
     walkable = true,
     collision_box = full_node_box,
     selection_box = full_node_box,
+    groups = {oddly_breakable_by_hand = 1, machine = 1},
 })
 
 minetest.register_abm({
