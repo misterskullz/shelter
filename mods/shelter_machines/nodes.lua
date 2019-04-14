@@ -2,7 +2,7 @@ local mod = shelter_machines
 
 local helpers = shelter_helpers
 local items = shelter_items
-
+local mapgen = shelter_mapgen
 
 local full_node_box = {
     type = 'fixed',
@@ -36,6 +36,7 @@ minetest.register_node(mod.mod_str .. 'computer_relay', {
     light_source = 2,
     collision_box = full_node_box,
     selection_box = full_node_box,
+    sounds = mapgen.node_sound_metal_defaults(),
 })
 
 minetest.register_abm({
@@ -121,6 +122,7 @@ minetest.register_node(mod.mod_str .. 'computer', {
     light_source = 8,
     collision_box = full_node_box,
     selection_box = full_node_box,
+    sounds = mapgen.node_sound_metal_defaults(),
 })
 
 minetest.register_abm({
@@ -206,6 +208,7 @@ minetest.register_node(mod.mod_str .. 'purifier_air_basic', {
     collision_box = full_node_box,
     selection_box = full_node_box,
     groups = {oddly_breakable_by_hand = 1, machine = 1},
+    sounds = mapgen.node_sound_metal_defaults(),
 })
 
 minetest.register_abm({

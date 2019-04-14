@@ -2,6 +2,7 @@ local mod = shelter_machines
 
 local helpers = shelter_helpers
 local items = shelter_items
+local mapgen = shelter_mapgen
 
 
 local full_node_box = {
@@ -101,6 +102,7 @@ minetest.register_node(basic_processor_off, {
     on_timer = basic_processor_on_timer,
     on_construct = basic_processor_on_construct,
     drop = basic_processor_off,
+    sounds = mapgen.node_sound_metal_defaults(),
 })
 
 minetest.register_node(mod.mod_str .. 'basic_processor_on', {
@@ -118,6 +120,7 @@ minetest.register_node(mod.mod_str .. 'basic_processor_on', {
     on_timer = basic_producer_on_timer,
     on_construct = basic_producer_on_construct,
     drop = basic_processor_off,
+    sounds = mapgen.node_sound_metal_defaults(),
 })
 
 minetest.register_craft({

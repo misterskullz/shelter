@@ -99,7 +99,7 @@ end
 
 local sound_metal_dig =   {name='shelter_metal_dig', gain=1.0}
 local sound_metal_dug =   {name='shelter_metal_dug', gain=1.0}
-local sound_metal_foot =  {name='shelter_metal_foot', gain=1.0}
+local sound_metal_foot =  {name='shelter_metal_foot', gain=0.3}
 local sound_metal_place = {name='shelter_metal_place', gain=1.0}
 local sound_metal_fail =  general_fail
 
