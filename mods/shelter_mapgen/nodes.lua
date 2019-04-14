@@ -223,7 +223,7 @@ minetest.register_node(mod.mod_str .. 'stone', {
 	color =mod.color_strings[1],
 	groups = {cracky = 3, oddly_breakable_by_hand=1},
 	drop = mod.mod_str .. 'stone',
-	--sounds = default.node_sound_stone_defaults(),
+	sounds = mod.node_sound_stone_defaults(),
 })
 
 for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone')) do
@@ -233,7 +233,7 @@ for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone')) do
 		color = node[2],
 		groups = {cracky = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1},
 		drop = mod.mod_str .. 'stone',
-		--sounds = default.node_sound_stone_defaults(),
+		sounds = mod.node_sound_stone_defaults(),
 	})
 end
 
@@ -243,7 +243,7 @@ minetest.register_node(mod.mod_str .. 'sand', {
 	color = mod.color_strings[5],
 	groups = {crumbly = 3, oddly_breakable_by_hand=1, falling_node = 1},
 	drop = mod.mod_str .. 'sand',
-	--sounds = default.node_sound_stone_defaults(),
+	sounds = mod.node_sound_sand_defaults(),
 })
 
 for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand')) do
@@ -258,6 +258,6 @@ for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand')) do
 				{items = {items_str .. 'material_scrap'}, rarity = 3}
 			},
 		},
-		--sounds = default.node_sound_stone_defaults(),
+		sounds = mod.node_sound_sand_defaults(),
 	})
 end
