@@ -17,6 +17,21 @@ minetest.register_node(mod.mod_str .. 'air', {
 	groups = {not_in_creative_inventory = 1},
 })
 
+minetest.register_node(mod.mod_str .. 'spawn_air', {
+	description = 'Spawn air',
+	drawtype = 'airlike',
+	paramtype = 'light',
+	sunlight_propagates = true,
+	walkable = false,
+	pointable = false,
+	diggable = false,
+	buildable_to = true,
+	floodable = true,
+	air_equivalent = true,
+	drop = '',
+	groups = {not_in_creative_inventory = 1},
+})
+
 
 minetest.register_abm({
     label = mod.mod_str .. 'air_toxic_replace_air',
@@ -214,7 +229,7 @@ minetest.register_node(mod.mod_str .. 'stone', {
 for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'stone')) do
 	minetest.register_node(node[1], {
 		description = 'Stone',
-		tiles = { 'sheltershelter_stone_sand.png' },
+		tiles = { 'shelter_stone.png' },
 		color = node[2],
 		groups = {cracky = 3, not_in_creative_inventory = 1, oddly_breakable_by_hand=1},
 		drop = mod.mod_str .. 'stone',
@@ -240,7 +255,7 @@ for _,node in pairs(mod.make_ground_nodes(mod.mod_str .. 'sand')) do
 		drop = {
 			items = {
 				{items = {mod.mod_str .. 'sand'}, rarity = 1, inherit_color = true},
-				{items = {items_str .. 'energy_unit'}, rarity = 10}
+				{items = {items_str .. 'material_scrap'}, rarity = 3}
 			},
 		},
 		--sounds = default.node_sound_stone_defaults(),

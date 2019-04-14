@@ -2,4 +2,4 @@ shelter_island.world_spawn (World spawn x,y,z) string (0,0,0)
 shelter_island.max_pregen (Maximum blocks to pregenerate) string 16
 shelter_island.spawn_spread (Minimum nodes between spawns) string 128
 shelter_island.search_radius (Spawn search radius) string 256
-shelter_island.max_distance (Spawn max search distance) string 1000
+shelter_island.max_distance (Spawn max search distance) string 100

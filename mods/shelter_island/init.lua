@@ -50,6 +50,7 @@ function mod.find_spawn_position()
 
 		minetest.emerge_area({x = x - 1, y = 0, z = z - 1}, {x = x + 1, y = 0, z = z + 1})
 		local y = minetest.get_spawn_level(x, z)
+		minetest.debug('find_spawn_position iteration ' .. tostring(i))
 		
 		if y then
 			local pos = {x = x, y = y, z = z}
